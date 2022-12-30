@@ -3,7 +3,9 @@ import parse from "html-react-parser";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 
-interface BlobProps {}
+interface BlobProps {
+  parentRef: React.RefObject<HTMLDivElement>;
+}
 
 const stringifiedSVG = `<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" id="blobSvg">
 <defs>
@@ -33,20 +35,23 @@ export const Blob = (props: BlobProps) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const x = Math.floor(Math.random() * window.innerWidth);
-      const y = Math.floor(Math.random() * window.innerHeight);
+      const x = Math.floor(
+        Math.random() * (props.parentRef.current?.offsetWidth ?? 0)
+      );
+      const y = Math.floor(
+        Math.random() * (props.parentRef.current?.offsetHeight ?? 0)
+      );
 
       setPosicion({ x, y });
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [props.parentRef]);
 
   return (
     <div
-      className={styles.blob}
+      className={classNames(styles.blob)}
       style={{
-        position: "absolute",
         left: posicion.x,
         top: posicion.y,
         transition: "all 6s ease-in-out",

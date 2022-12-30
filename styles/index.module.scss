@@ -4,7 +4,7 @@
     background-color: color.$background;
     color: color.$text;
     width: 100vw;
-
+    
     .container {
         display: flex;
         align-items: center;
@@ -12,6 +12,8 @@
         flex-direction: column;
         gap: 20px;
         min-width: 400px;
+        position: relative;
+        overflow-x: hidden;
         
         .post {
             max-width: 780px;
@@ -20,6 +22,7 @@
             justify-content: center;
             flex-direction: column;
             gap: 12px;
+            padding: 0 20px;
             
             .content {
                 transform: scale(1);
@@ -43,6 +46,7 @@
                 color: color.$white;
                 text-align: center;
                 display: block;
+                z-index: 1;
             }
             h1 {
                 display: inline-block;

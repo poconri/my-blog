@@ -4,7 +4,7 @@ import { GraphQLClient, gql } from "graphql-request";
 import { Inter } from "@next/font/google";
 import styles from "../styles/index.module.scss";
 import { Provider } from "react-redux";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import parse from "html-react-parser";
 import classNames from "classnames";
 import { Toggle } from "../src/components/toggle/toggle";
@@ -47,10 +47,11 @@ export async function getStaticProps() {
 
 export default function Home({ posts }: any) {
   const [isSpanish, setIsSpanish] = useState<boolean>(false);
+  const parentRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className={classNames(styles.main)}>
-      <div className={classNames(styles.container)}>
+      <div className={classNames(styles.container)} ref={parentRef}>
         <Toggle
           toggleID="LANG"
           label={isSpanish ? "Español" : "English"}
@@ -60,7 +61,7 @@ export default function Home({ posts }: any) {
             setIsSpanish(newstatus);
           }}
         />
-        {/* <Blob /> */}
+        <Blob parentRef={parentRef} />
         {posts.map((post: any) => (
           <div key={post.id} className={classNames(styles.post)}>
             {isSpanish ? (
