@@ -1,0 +1,62 @@
+@use 'color';
+
+.main {
+    background-color: color.$background;
+    color: color.$text;
+    width: 100vw;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+        min-width: 400px;
+        
+        .post {
+            max-width: 780px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            
+            .content {
+                transform: scale(1);
+                transition: all 0.5s ease;
+                padding: 8px 20px;
+                background: rgba( 255, 255, 255, 0 );
+                box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+                backdrop-filter: blur( 0px );
+                -webkit-backdrop-filter: blur( 0px );
+                border-radius: 10px;
+                border: 1px solid rgba( 255, 255, 255, 0.18 );
+                
+                &:hover {
+                    transform: scale(1.05);
+                    border-radius: 16px;
+                    background-color: color.$text-background;
+                }
+            }
+
+            .title {
+                color: color.$white;
+                text-align: center;
+                display: block;
+            }
+            h1 {
+                display: inline-block;
+            }
+
+            p {
+                color: color.$white;
+                display: inline-block;
+            }
+
+            .author,
+            .date {
+                align-self: end;
+            }
+        }
+    }
+}
