@@ -60,7 +60,7 @@ export default function Home({ posts }: any) {
             setIsSpanish(newstatus);
           }}
         />
-        <Blob />
+        {/* <Blob /> */}
         {posts.map((post: any) => (
           <div key={post.id} className={classNames(styles.post)}>
             {isSpanish ? (
